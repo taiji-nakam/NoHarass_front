@@ -110,7 +110,7 @@ export default function Home() {
 
 
   return (
-    <div>
+    <div className={styles.body}>
       <h1 className={`
         my-4
         font-bold text-5xl tracking-tight
