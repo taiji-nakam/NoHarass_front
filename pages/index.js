@@ -28,7 +28,7 @@ export default function Home() {
   const handleGptRequest = async (e) => {
     e.preventDefault();
 
-    const res = await fetch(process.env.API_ENDPOINT + '/api/requestGpt', {
+    const res = await fetch(process.env.API_ENDPOINT + '/requestGpt', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -50,7 +50,7 @@ export default function Home() {
 
   const handleGetRequest = async () => {
     console.log(process.env.API_ENDPOINT);
-    const res = await fetch(process.env.API_ENDPOINT + '/api/hello', {
+    const res = await fetch(process.env.API_ENDPOINT + '/subHello', {
       method: 'GET',
     });
     const data = await res.json();
@@ -70,7 +70,7 @@ export default function Home() {
   // IDを指定してGETリクエストを送信
   const handleIdRequest = async (e) => {
     e.preventDefault();
-    const res = await fetch(process.env.API_ENDPOINT + `/api/multiply/${id}`, {
+    const res = await fetch(process.env.API_ENDPOINT + `/multiply/${id}`, {
       method: 'GET',
     });
     const data = await res.json();
@@ -91,7 +91,7 @@ export default function Home() {
     //入力されたデータをコンソールに表示
     console.log("入力情報:", input);
 
-    const res = await fetch(process.env.API_ENDPOINT + '/api/echo', {
+    const res = await fetch(process.env.API_ENDPOINT + '/echo', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
