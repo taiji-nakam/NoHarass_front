@@ -18,15 +18,15 @@ export default function Home() {
   const doResult = async (e) => {
     e.preventDefault();　// javascriptイベントの制御
     // 入力データ送信・診断結果生成・診断ID取得
-    // const res = await fetch(process.env.API_ENDPOINT + '/doResult', {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify({ "input":input }),
+    const res = await fetch(process.env.API_ENDPOINT + '/doResult', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ "input":"dummy" }),
   
-    //   });
-    // const data = await res.json();
+      });
+    const data = await res.json();
     //setAssesmentId(data.assessmentId);            // 診断IDをコンテキストに保存
     router.push('/city-picker/result');      // 診断結果ページへ遷移
   };
@@ -47,19 +47,20 @@ export default function Home() {
     <div className={styles.body}>
       <h1>基本情報の入力</h1>
       <form onSubmit={doResult}>
-        {/* この中でQuestionsのデータを出力する */}
-        {/* <textarea
+
+        {/* この中で基礎情報入力する */}
+        <textarea
             //className={style.inputarea}
             className={`
               backdrop-blur-sm bg-white/70
               font-bold 
               text-black
             `}
-            value={sharedMsg}
+            value="dummy"
             onChange={(e) => setSharedMsg(e.target.value)}
             rows={8} 
             cols={30}
-        /> */}
+        />
         <br />
         <button className="btn btn-outline btn-primary" type="submit">上記条件で、おすすめのエリアを見る→</button>
       </form>

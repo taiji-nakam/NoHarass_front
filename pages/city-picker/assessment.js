@@ -14,11 +14,11 @@ export default function Home() {
   // 設問一覧の取得
   const [questions, setQuestions] = useState([]);
   useEffect(() => {
-      // const fetchAndSetQuestion = async () => {
-      //     const questionsData = await fetchQuestions();
-      //     setQuestions(questionsData);
-      // };
-      // fetchAndSetQuestion();
+      const fetchAndSetQuestion = async () => {
+          const questionsData = await fetchQuestions();
+          setQuestions(questionsData);
+      };
+      fetchAndSetQuestion();
   }, []);
   
   //診断結果の作成と診断結果ページへ遷移
@@ -30,15 +30,15 @@ export default function Home() {
   const doAssessment = async (e) => {
     e.preventDefault();　// javascriptイベントの制御
     // 入力データ送信・診断結果生成・診断ID取得
-    // const res = await fetch(process.env.API_ENDPOINT + '/doAssessment', {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify({ "input":input }),
+    const res = await fetch(process.env.API_ENDPOINT + '/doAssessment', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ "input":input }),
   
-    //   });
-    // const data = await res.json();
+      });
+    const data = await res.json();
     //setAssesmentId(data.assessmentId);            // 診断IDをコンテキストに保存
     router.push('/city-picker/assessmentResult');      // 診断結果ページへ遷移
   };
