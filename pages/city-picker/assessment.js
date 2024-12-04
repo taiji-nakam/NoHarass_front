@@ -56,6 +56,20 @@ export default function Home() {
 
     console.log(categoryAverages); // デバッグ用
 
+    e.preventDefault();　// javascriptイベントの制御
+    // 入力データ送信・診断結果生成・診断ID取得
+    const res = await fetch(process.env.API_ENDPOINT + '/doAssessment', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        // はらちゃん；ここでcategoryScoresとcategoryAveragesの内容をJSONにして渡したいです
+        body: JSON.stringify({ "input":"dummy" }),
+  
+      });
+    const data = await res.json();
+    console.log(data)
+
     // 診断IDをコンテキストに保存する場合は以下を追加（必要に応じて）
     // setAssesmentId(categoryAverages);
 
