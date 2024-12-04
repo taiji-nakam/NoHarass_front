@@ -56,7 +56,7 @@ export default function Home() {
               font-bold 
               text-black
             `}
-            value="dummy"
+            value={assesmentId}
             onChange={(e) => setSharedMsg(e.target.value)}
             rows={8} 
             cols={30}

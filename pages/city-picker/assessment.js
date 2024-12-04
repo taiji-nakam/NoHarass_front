@@ -68,11 +68,9 @@ export default function Home() {
   
       });
     const data = await res.json();
-    console.log(data)
 
     // 診断IDをコンテキストに保存する（次の画面で使えるようにする）
-    setAssesmentId(data.assessment_id);
-    console.log(data.assessment_id)
+    setAssesmentId(data.assessment_id)
 
     router.push('/city-picker/assessmentResult');
   };
@@ -82,6 +80,10 @@ export default function Home() {
     e.preventDefault();
     router.push('/city-picker');  // 最初の画面へ遷移
   };
+
+  useEffect(() => {
+    console.log("assessmentId has been updated:", assessmentId);
+  }, [assessmentId]); // assessmentIdが更新されたときに実行される
 
   return (
     <div className={styles.body}>
