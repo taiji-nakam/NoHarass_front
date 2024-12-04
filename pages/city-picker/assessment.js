@@ -22,7 +22,7 @@ export default function Home() {
   ]);
 
   const [answers, setAnswers] = useState({});
-  const { setAssesmentId } = useContext(MyContext);  // useContextでassesmentIdとsetAssesmentIdを取得
+  const { assessmentId,setAssesmentId } = useContext(MyContext);  // useContextでassesmentIdとsetAssesmentIdを取得
   const router = useRouter();  // useRouterのインスタンスを作成
 
   // 回答変更時にステートを更新
@@ -70,8 +70,9 @@ export default function Home() {
     const data = await res.json();
     console.log(data)
 
-    // 診断IDをコンテキストに保存する場合は以下を追加（必要に応じて）
-    // setAssesmentId(categoryAverages);
+    // 診断IDをコンテキストに保存する（次の画面で使えるようにする）
+    setAssesmentId(data.assessment_id);
+    console.log(data.assessment_id)
 
     router.push('/city-picker/assessmentResult');
   };
