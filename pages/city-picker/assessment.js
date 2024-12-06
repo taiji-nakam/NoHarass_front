@@ -96,6 +96,7 @@ export default function Home() {
     router.push('/city-picker');  // 最初の画面へ遷移
   };
 
+
   return (
     <div className={`${styles.body} bg-white`}>
       <div className="text-center my-4">
