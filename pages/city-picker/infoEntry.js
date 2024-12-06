@@ -11,7 +11,7 @@ export default function Home() {
  
   //基礎情報の作成とおすすめエリア表示ページへ遷移
   // const [input, setInput] = useState('');   // 基礎情報それぞれ
-  const { assesmentId, setAssesmentId } = useContext(MyContext);  // useContextでassesmentIdとsetAssesmentIdを取得
+  const { assessmentId, setAssessmentId } = useContext(MyContext);  // useContextでassessmentIdとsetAssessmentIdを取得
   const router = useRouter();  // useRouterのインスタンスを作成
  
   //おすすめエリアの生成と結果ページへ遷移
@@ -27,7 +27,7 @@ export default function Home() {
   
       });
     const data = await res.json();
-    //setAssesmentId(data.assessmentId);            // 診断IDをコンテキストに保存
+    //setAssessmentId(data.assessmentId);            // 診断IDをコンテキストに保存
     router.push('/city-picker/result');      // 診断結果ページへ遷移
   };
 
@@ -56,7 +56,7 @@ export default function Home() {
               font-bold 
               text-black
             `}
-            value={assesmentId}
+            value={assessmentId}
             onChange={(e) => setSharedMsg(e.target.value)}
             rows={8} 
             cols={30}

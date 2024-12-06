@@ -26,7 +26,7 @@ export default function Home() {
   ]);
 
   const [answers, setAnswers] = useState({});
-  const { assessmentId,setAssesmentId } = useContext(MyContext);  // useContextでassesmentIdとsetAssesmentIdを取得
+  const { assessmentId,setAssessmentId } = useContext(MyContext);  // useContextでassessmentIdとsetAssessmentIdを取得
   const router = useRouter();  // useRouterのインスタンスを作成
 
   // 回答変更時にステートを更新
@@ -84,7 +84,7 @@ export default function Home() {
     const data = await res.json();
 
     // 診断IDをコンテキストに保存する（次の画面で使えるようにする）
-    setAssesmentId(data.assessment_id)
+    setAssessmentId(data.assessment_id)
     console.log(data.assessment_id)
 
     router.push('/city-picker/assessmentResult');
