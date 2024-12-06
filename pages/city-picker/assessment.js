@@ -58,7 +58,14 @@ export default function Home() {
       categoryAverages[category] = scores.reduce((a, b) => a + b, 0) / scores.length;
     }
 
+    // 質問と回答のペアを生成
+    const questionValues = Object.entries(answers).map(([questionId, value]) => ({
+      questionId: parseInt(questionId), 
+      value: parseInt(value)
+    }));
+
     console.log(categoryAverages); // デバッグ用
+    console.log(questionValues);
 
     e.preventDefault();　// javascriptイベントの制御
     // 入力データ送信・診断結果生成・診断ID取得
@@ -69,9 +76,10 @@ export default function Home() {
         },
         body: JSON.stringify({
           categoryScores: categoryScores,
-          categoryAverages: categoryAverages
+          categoryAverages: categoryAverages,
+          questionValues: questionValues,
         }),
-  
+
       });
     const data = await res.json();
 
@@ -87,10 +95,6 @@ export default function Home() {
     e.preventDefault();
     router.push('/city-picker');  // 最初の画面へ遷移
   };
-
-  useEffect(() => {
-    console.log("assessmentId has been updated:", assessmentId);
-  }, [assessmentId]); // assessmentIdが更新されたときに実行される
 
   return (
     <div className={`${styles.body} bg-white`}>
