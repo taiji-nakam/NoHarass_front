@@ -12,7 +12,7 @@ export default function Result() {
   const router = useRouter();
   const { area } = router.query; // クエリからおすすめエリアを取得
   const [mapUrl, setMapUrl] = useState('');
-  const { assesmentId, setAssesmentId } = useContext(MyContext); // Contextの使用
+  const { assessmentId, setAssessmentId } = useContext(MyContext); // Contextの使用
 
   useEffect(() => {
     if (area) {
