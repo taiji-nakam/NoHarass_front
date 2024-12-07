@@ -117,16 +117,6 @@ export default function Home() {
         bg-gradient-to-r from-pink-500 via-blue-500 to-green-500
         bg-clip-text text-transparent 
         `}>Tailwind適用OK</h1>
-      <div className="chat chat-start">
-        <div className="chat-image avatar">
-          <div className="w-10 rounded-full">
-            <img
-              alt="Tailwind CSS chat bubble component"
-              src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
-          </div>
-        </div>
-        <div className="chat-bubble">Daisyui適用OK</div>
-      </div>
       <br />
       <h1>ページ遷移とデータ共有</h1>
       <form onSubmit={shareNextpage}>
