@@ -27,14 +27,25 @@ jobs:
           npm run build --if-present
           npm run test --if-present
 
+      - name: Copy artifact for deployment job
+        run: |          
+          mkdir deploy
+          cp -r ./.next/standalone/. ./deploy
+          cp -r ./public ./deploy
+          cp -r ./.next/static/. ./deploy/.next/static
+
       - name: Zip artifact for deployment
-        run: zip release.zip ./* -r
+        run: zip release.zip ./deploy -r
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: node-app
           path: release.zip
+
+      # 管理操作（例: 設定変更）とデプロイ操作を短時間で連続して行った際に発生する場合がある→Sleep
+      - name: Wait for 30 seconds
+        run: sleep 30
 
   deploy:
     runs-on: ubuntu-latest
@@ -58,5 +69,5 @@ jobs:
         with:
           app-name: 'tech0-gen-8-step3-app-node-1'
           slot-name: 'Production'
-          package: .
+          package: ./deploy
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_E30D5BA9977C42BEA3A16129D230C77C }}
