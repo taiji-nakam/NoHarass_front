@@ -64,7 +64,11 @@ export default function Home() {
       value: parseInt(value)
     }));
 
+    console.log("===categoryScores:==="); // デバッグ用
+    console.log(categoryScores); // デバッグ用
+    console.log("===categoryAverages:==="); // デバッグ用
     console.log(categoryAverages); // デバッグ用
+    console.log("===questionValues===");
     console.log(questionValues);
 
     e.preventDefault();　// javascriptイベントの制御
