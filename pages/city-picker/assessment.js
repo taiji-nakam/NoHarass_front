@@ -39,7 +39,7 @@ export default function Home() {
 
   // 診断結果の生成と診断結果ページへ遷移
   const doAssessment = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); // ここで1回だけ呼ぶ
 
     // カテゴリごとのスコアを計算
     const categoryScores = Object.entries(answers).reduce((acc, [questionId, value]) => {
@@ -60,40 +60,34 @@ export default function Home() {
 
     // 質問と回答のペアを生成
     const questionValues = Object.entries(answers).map(([questionId, value]) => ({
-      questionId: parseInt(questionId), 
-      value: parseInt(value)
+      questionId: parseInt(questionId),
+      value: parseInt(value),
     }));
 
-    console.log("===categoryScores:==="); // デバッグ用
-    console.log(categoryScores); // デバッグ用
-    console.log("===categoryAverages:==="); // デバッグ用
     console.log(categoryAverages); // デバッグ用
-    console.log("===questionValues===");
     console.log(questionValues);
 
-    e.preventDefault();　// javascriptイベントの制御
     // 入力データ送信・診断結果生成・診断ID取得
     const res = await fetch(process.env.API_ENDPOINT + '/doAssessment', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          categoryScores: categoryScores,
-          categoryAverages: categoryAverages,
-          questionValues: questionValues,
-        }),
-
-      });
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        categoryScores: categoryScores,
+        categoryAverages: categoryAverages,
+        questionValues: questionValues,
+      }),
+    });
     const data = await res.json();
-
+  
     // 診断IDをコンテキストに保存する（次の画面で使えるようにする）
-    setAssessmentId(data.assessment_id)
-    console.log(data.assessment_id)
-
+    setAssessmentId(data.assessment_id);
+    console.log(data.assessment_id);
+  
     router.push('/city-picker/assessmentResult');
   };
-
+  
   // Indexページへ遷移
   const toIndex = (e) => {
     e.preventDefault();
@@ -106,7 +100,7 @@ export default function Home() {
       <div className="text-center my-4">
         <div className="flex justify-center items-center mb-2">
           <span className="text-xl font-bold">20%</span>
-          <div className="relative w-full max-w-lg h-2 ml-2 bg-gray-300 rounded-full">
+          <div className="relative w-[400px] max-w-lg h-2 ml-2 bg-gray-300 rounded-full">
             <div className="absolute top-0 left-0 h-full bg-orange-500" style={{ width: '20%' }}></div>
           </div>
         </div>
