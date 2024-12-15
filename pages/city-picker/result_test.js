@@ -25,7 +25,6 @@ export default function Result() {
 
   // おすすめエリア情報を取得する関数
   const fetchResults = async () => {
-    require('dotenv').config();
     console.log(process.env.API_ENDPOINT);
     console.log(process.env.GOOGLE_STATIC_MAPS_API_KEY);
     try {
