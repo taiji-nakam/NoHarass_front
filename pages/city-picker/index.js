@@ -64,8 +64,8 @@ export default function Home() {
         <Image
           src="/images/apartment-hunting-logo.png"
           alt="Apartment Hunting Logo"
-          width={200}
-          height={200}
+          width={180}
+          height={180}
           className="w-full h-auto"
           priority
         />
@@ -77,7 +77,7 @@ export default function Home() {
         <div className="grid grid-cols-2 gap-4">
           <Link href="/city-picker/assessment" className="w-full">
             <button 
-              className="w-full h-16 text-xl bg-[#FFC107] hover:bg-[#FFD54F] text-black rounded-md transition duration-300 ease-in-out shadow-md"
+              className="w-full h-14 text-xl bg-[#FFC107] hover:bg-[#FFD54F] text-black rounded-md transition duration-300 ease-in-out shadow-md"
             >
               する
             </button>
@@ -85,7 +85,7 @@ export default function Home() {
           
           <Link href="/city-picker/customInput" className="w-full">
             <button 
-              className="w-full h-16 text-xl bg-[#FFC107] hover:bg-[#FFD54F] text-black rounded-md transition duration-300 ease-in-out shadow-md"
+              className="w-full h-14 text-xl bg-[#FFC107] hover:bg-[#FFD54F] text-black rounded-md transition duration-300 ease-in-out shadow-md"
             >
               しない
             </button>
