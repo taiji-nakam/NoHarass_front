@@ -4,6 +4,8 @@ import { useState, useContext, useEffect} from 'react';
 import { MyContext } from '../context/MyContext';
 import { useRouter } from 'next/router';
 import styles from '../app/style/index.module.css';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Home() {
 
@@ -111,14 +113,40 @@ export default function Home() {
 
   return (
     <div className={styles.body}>
-      <h1 className={`
+        <div className="relative w-full max-w-md mb-8">
+          <Image
+            src="/images/apartment-hunting-logo.png"
+            alt="Apartment Hunting Logo"
+            width={180}
+            height={180}
+            className="w-full h-auto"
+            priority
+          />
+        </div>
+        <div className="w-full max-w-md bg-[#FF9800] rounded-lg p-6 mb-4 shadow-md mt-4">
+          <Link href="/city-picker/" className="w-full">
+            <h1 className="text-2xl font-bold text-black text-center">
+              Apartment Hunting
+            </h1>
+          </Link>
+        </div>
+        <div className="w-full max-w-md bg-[#FF9800] rounded-lg p-6 mb-4 shadow-md mt-4">
+          <Link href="https://chatgpt.com/g/g-675e22cb08c48191be284f734861df9c-yokoso-home" className="w-full">
+            <h1 className="text-2xl font-bold text-black text-center">
+              Life Support : SenpAI
+            </h1>
+          </Link>
+        </div>
+      
+      {/* <h1 className={`
         my-4
         font-bold text-5xl tracking-tight
         bg-gradient-to-r from-pink-500 via-blue-500 to-green-500
         bg-clip-text text-transparent 
         `}>Tailwind適用OK</h1>
-      <br />
-      <h1>ページ遷移とデータ共有</h1>
+      <br /> */}
+
+      {/* <h1>ページ遷移とデータ共有</h1>
       <form onSubmit={shareNextpage}>
         <textarea
             //className={style.inputarea}
@@ -154,7 +182,8 @@ export default function Home() {
         <button className="btn btn-outline btn-primary" type="submit">GPTへ聞く</button>
         {gptResult && <p>GPTからの返答: {gptResult}</p>}
       </form>
-      <br />  
+      <br />   */}
+      <br/><br/><br/><br/><br/><br/><br/><br/>
       <h1>Next.jsとFlaskの連携アプリ</h1>
       <button onClick={handleGetRequest}>GETリクエストを送信</button>
       {getResponse && <p>サーバーからのGET応答: {getResponse}</p>}
