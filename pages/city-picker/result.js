@@ -34,8 +34,6 @@ export default function Result() {
 
       // API エンドポイントにリクエストを送信
       const res = await fetch(`${process.env.API_ENDPOINT}/areaResult?assessmentId=${assessmentId}`);
-      //const res = await fetch(`${process.env.API_ENDPOINT}/areaResult?assessmentId=117`);
-
       console.log(res);
 
       if (!res.ok) {
