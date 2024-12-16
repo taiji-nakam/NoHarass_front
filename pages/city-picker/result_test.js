@@ -21,16 +21,16 @@ export default function Result() {
   const [note, setNote] = useState('');
   const [latitude, setLatitude] = useState('');
   const [longitude, setLongitude] = useState('');
-  const [mapKey, setMapKey] = useState('');
+  // const [mapKey, setMapKey] = useState('');
 
   // おすすめエリア情報を取得する関数
   const fetchResults = async () => {
     console.log(process.env.API_ENDPOINT);
-    console.log(process.env.NEXT_PUBLIC_GOOGLE_STATIC_MAPS_API_KEY);
+    // console.log(process.env.NEXT_PUBLIC_GOOGLE_STATIC_MAPS_API_KEY);
     // MAP Keyを設定
-    setMapKey(process.env.NEXT_PUBLIC_GOOGLE_STATIC_MAPS_API_KEY);
-    console.log("Set済Key：");
-    console.log(mapKey);
+    // setMapKey(process.env.NEXT_PUBLIC_GOOGLE_STATIC_MAPS_API_KEY);
+    // console.log("Set済Key：");
+    // console.log(mapKey);
 
     try {
       setLoading(true);
@@ -72,45 +72,43 @@ export default function Result() {
     }
   };
   
+  // // 地図データを取得する関数
+  // const fetchMap = async () => {
+  //   try {
+  //     setLoading(true);
+  //     console.log("Fetching map data for area:", area);
 
+  //     const response = await fetch('/api/getStaticMap', {
+  //       method: 'POST',
+  //       headers: { 'Content-Type': 'application/json' },
+  //       body: JSON.stringify({ location: area }),
+  //     });
 
-  // 地図データを取得する関数
-  const fetchMap = async () => {
-    try {
-      setLoading(true);
-      console.log("Fetching map data for area:", area);
+  //     if (!response.ok) throw new Error('地図の取得に失敗しました');
 
-      const response = await fetch('/api/getStaticMap', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ location: area }),
-      });
+  //     const data = await response.json();
+  //     console.log("Map data received:", data);
 
-      if (!response.ok) throw new Error('地図の取得に失敗しました');
-
-      const data = await response.json();
-      console.log("Map data received:", data);
-
-      setMapUrl(data.mapUrl);
-    } catch (error) {
-      console.error("Error fetching map data:", error);
-      setError(error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
+  //     setMapUrl(data.mapUrl);
+  //   } catch (error) {
+  //     console.error("Error fetching map data:", error);
+  //     setError(error.message);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
   // 初期ロード時のデータフェッチ
   useEffect(() => {
     fetchResults();
   }, [assessmentId]);
 
-  // 地図の取得
-  useEffect(() => {
-    if (area) {
-      fetchMap();
-    }
-  }, [area]);
+  // // 地図の取得
+  // useEffect(() => {
+  //   if (area) {
+  //     fetchMap();
+  //   }
+  // }, [area]);
 
   const toAssessment = () => {
     router.push('/city-picker/assessment');
@@ -135,16 +133,14 @@ export default function Result() {
         <>
           <p>エリア: {recommended}</p>
           <p>メッセージ: {note}</p>
-          <p>EnvKey:{process.env.NEXT_PUBLIC_GOOGLE_STATIC_MAPS_API_KEY}</p>
-          <p>SetKey:{mapKey}</p>
-          <div>
+          {/* <div>
             <h2>ChatGPT からのおすすめ情報:</h2>
             <p>{gptMessage}</p>
-          </div>
+          </div> */}
           <div style={{ width: "100%", height: "400px", marginTop: "10px" }}>
             <iframe 
               title={`Google Map for ${recommended}`} width="100%" height="100%" style={{ border: "0" }} loading="lazy" allowFullScreen 
-              src={`https://www.google.com/maps/embed/v1/place?key=${mapKey}&q=${latitude},${longitude}`} >
+              src={`https://www.google.com/maps/embed/v1/place?key=${process.env.NEXT_PUBLIC_GOOGLE_STATIC_MAPS_API_KEY}&q=${latitude},${longitude}`} >
             </iframe>
           </div>
         </>

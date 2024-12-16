@@ -23,8 +23,9 @@ jobs:
 
       - name: npm install, build, and test
         # Build時の環境変数をここで定義
-        env:
+        env: 
           API_ENDPOINT: https://tech0-gen-8-step3-app-py-1.azurewebsites.net
+          NEXT_PUBLIC_GOOGLE_STATIC_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
         run: |
           npm install
           npm run build --if-present
@@ -74,6 +75,5 @@ jobs:
           slot-name: 'Production'
           package: ./deploy
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_E30D5BA9977C42BEA3A16129D230C77C }}
-          app-settings: |
-                      NEXT_PUBLIC_GOOGLE_STATIC_MAPS_API_KEY=${{ secrets.GOOGLE_MAPS_API_KEY }}
+
               
