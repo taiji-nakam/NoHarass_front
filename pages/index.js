@@ -183,7 +183,7 @@ export default function Home() {
         {gptResult && <p>GPTからの返答: {gptResult}</p>}
       </form>
       <br />   */}
-      <br/><br/><br/><br/><br/><br/><br/><br/>
+      <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
       <h1>Next.jsとFlaskの連携アプリ</h1>
       <button onClick={handleGetRequest}>GETリクエストを送信</button>
       {getResponse && <p>サーバーからのGET応答: {getResponse}</p>}
