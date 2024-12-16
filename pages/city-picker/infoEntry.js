@@ -47,7 +47,7 @@ export default function Home() {
         throw new Error(`HTTP error! status: ${response.status}, details: ${errorText}`);
       }
       const data = await response.json();
-      setAssessmentId(data.assessmentId);
+      // setAssessmentId(data.assessmentId);
       router.push('/city-picker/result');
     } catch (error) {
       console.error('Error in doResult:', error);
