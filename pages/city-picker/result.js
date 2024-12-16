@@ -22,6 +22,7 @@ export default function Result() {
   const [latitude, setLatitude] = useState('');
   const [longitude, setLongitude] = useState('');
   
+
   // おすすめエリア情報を取得する関数
   const fetchResults = async () => {
     console.log(process.env.API_ENDPOINT);
@@ -29,11 +30,9 @@ export default function Result() {
     try {
       setLoading(true);
       console.log("Fetching area result...");
-      console.log(':::assessmentId:::');
-      console.log(assessmentId);
   
       // API エンドポイントにリクエストを送信
-      const res = await fetch(`${process.env.API_ENDPOINT}/areaResult?assessmentId=${assessmentId}`);
+      const res = await fetch(`${process.env.API_ENDPOINT}/areaResult?assessmentId=117`);
 
       if (!res.ok) {
         throw new Error(`おすすめエリア情報の取得に失敗しました: ${res.statusText}`);
