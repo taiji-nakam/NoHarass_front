@@ -21,12 +21,17 @@ export default function Result() {
   const [note, setNote] = useState('');
   const [latitude, setLatitude] = useState('');
   const [longitude, setLongitude] = useState('');
-  
+  const [mapKey, setMapKey] = useState('');
 
   // おすすめエリア情報を取得する関数
   const fetchResults = async () => {
     console.log(process.env.API_ENDPOINT);
-    console.log(process.env.GOOGLE_STATIC_MAPS_API_KEY);
+    console.log(process.env.NEXT_PUBLIC_GOOGLE_STATIC_MAPS_API_KEY);
+    // MAP Keyを設定
+    setMapKey(process.env.NEXT_PUBLIC_GOOGLE_STATIC_MAPS_API_KEY);
+    console.log("Set済Key：");
+    console.log(mapKey);
+
     try {
       setLoading(true);
       console.log("Fetching area result...");
@@ -130,7 +135,8 @@ export default function Result() {
         <>
           <p>エリア: {recommended}</p>
           <p>メッセージ: {note}</p>
-          {/* <p>API:{process.env.NEXT_PUBLIC_GOOGLE_STATIC_MAPS_API_KEY}</p> */}
+          <p>EnvKey:{process.env.NEXT_PUBLIC_GOOGLE_STATIC_MAPS_API_KEY}</p>
+          <p>SetKey:{mapKey}</p>
           <div>
             <h2>ChatGPT からのおすすめ情報:</h2>
             <p>{gptMessage}</p>
@@ -138,7 +144,7 @@ export default function Result() {
           <div style={{ width: "100%", height: "400px", marginTop: "10px" }}>
             <iframe 
               title={`Google Map for ${recommended}`} width="100%" height="100%" style={{ border: "0" }} loading="lazy" allowFullScreen 
-              src={`https://www.google.com/maps/embed/v1/place?key=${process.env.NEXT_PUBLIC_GOOGLE_STATIC_MAPS_API_KEY}&q=${latitude},${longitude}`} >
+              src={`https://www.google.com/maps/embed/v1/place?key=${mapKey}&q=${latitude},${longitude}`} >
             </iframe>
           </div>
         </>
