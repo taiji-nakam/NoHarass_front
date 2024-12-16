@@ -25,14 +25,18 @@ export default function Result() {
 
   // おすすめエリア情報を取得する関数
   const fetchResults = async () => {
-    console.log(process.env.API_ENDPOINT);
-    console.log(process.env.GOOGLE_STATIC_MAPS_API_KEY);
+
     try {
       setLoading(true);
+      console.log(':::assessmentId:::')
+      console.log(assessmentId)
       console.log("Fetching area result...");
-  
+
       // API エンドポイントにリクエストを送信
-      const res = await fetch(`${process.env.API_ENDPOINT}/areaResult?assessmentId=117`);
+      const res = await fetch(`${process.env.API_ENDPOINT}/areaResult?assessmentId=${assessmentId}`);
+      //const res = await fetch(`${process.env.API_ENDPOINT}/areaResult?assessmentId=117`);
+
+      console.log(res);
 
       if (!res.ok) {
         throw new Error(`おすすめエリア情報の取得に失敗しました: ${res.statusText}`);
